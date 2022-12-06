@@ -36,7 +36,7 @@ body {
   box-shadow: 12px 12px var(--primary-color-alt);
   height: 600px;
   width: 380px;
-  border-radius: 10px 10px 50px;
+  border-radius: 15px 15px 50px;
 }
 
 .img-container {
@@ -50,7 +50,7 @@ body {
   width: 100%;
   object-fit: cover;
   border-radius: 10px;
-  border: solid 10px var(--primary-color-alt);
+  outline: solid 10px var(--primary-color-alt);
 }
 
 h2 {
@@ -95,27 +95,30 @@ audio {
   top: -25px;
   display: flex;
   justify-content: space-between;
+  font-size: 20px;
 }
 
 /* Controls */
 .player-controls {
-  position: relative;
-  top: -15px;
-  left: 120px;
-  width: 200px;
+  display: flex;
+  align-items: center;
 }
 
-.fas {
-  font-size: 30px;
-  color: rgb(129, 129, 129);
-  margin-right: 30px;
+.fa-solid {
+  /* flex: 1; */
+  font-size: 35px;
+  color: var(--controls-color);
+  cursor: pointer;
+  user-select: none;
+}
 
+.fa-solid:hover {
+  filter: brightness(80%);
 }
 
 .main-button {
-  font-size: 40px;
-  position: relative;
-  top: 3px;
+  font-size: 50px;
+  margin: 0 30px;
 }
 
 .footer {
@@ -137,23 +140,17 @@ audio {
   color: var(--text-color-alt);
 }
 /* Media Query: iPhone (Vertical) */
-@media screen and (max-width: 376px) {
-
-
-  .img-container {
-    left: 29px;
+@media screen and (max-width: 420px) {
+  .player-container {
+    scale: 0.9; /*пофиксить смещение элементов при смене разрешения*/
   }
 
   h2 {
-    font-size: 20px;
+    font-size: 30px;
   }
 
   h3 {
-    font-size: 15px;
-  }
-
-  .player-controls {
-    top: -10px;
-    left: 100px;
+    font-size: 20px;
   }
 }
+
