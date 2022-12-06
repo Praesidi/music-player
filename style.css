@@ -104,15 +104,14 @@ audio {
   align-items: center;
 }
 
-.fa-solid {
-  /* flex: 1; */
+.fas {
   font-size: 35px;
   color: var(--controls-color);
   cursor: pointer;
   user-select: none;
 }
 
-.fa-solid:hover {
+.fas:hover {
   filter: brightness(80%);
 }
 
