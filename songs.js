@@ -17,7 +17,7 @@ const songsList = [
   {
     fileName: 'rosa-walton_1',
     songTitle: 'I Really Want to Stay at Your House',
-    songArtist: 'Rosa Walton & Hallie Coggins',
+    songArtist: 'R.Walton & H.Coggins',
   },
   {
     fileName: 'sakanaction_1',
