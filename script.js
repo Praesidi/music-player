@@ -1,10 +1,11 @@
-// const song = document.querySelector('audio');
 const song = document.getElementById ('audio');
 const songCover = document.querySelector('img');
 const songArtist = document.getElementById('artist');
 const songTitle = document.getElementById('title');
 const progressContainer = document.getElementById('progress-container');
 const progress = document.getElementById('progress');
+const currentTimeElement = document.getElementById('current-time');
+const songDurationElement = document.getElementById('duration');
 const prevBtn = document.getElementById('prev');
 const playBtn = document.getElementById('play');
 const nextBtn = document.getElementById('next');
@@ -29,7 +30,6 @@ function pauseSong(){
 
 playBtn.addEventListener('click', () => (isPlaying ? pauseSong() : playSong()));
 
-//write a fanction to change font-size if title is too long to fit
 function loadSong(songName){
   if (songName.songTitle.length >= 20) {
     songTitle.style.fontSize = '25px';
@@ -68,14 +68,42 @@ loadSong(songsList[songIndex]);
 
 function updateProgressBar(e){
   if (isPlaying) {
-    const {currentTime, duration} = e.srcElement;
-    console.log(currentTime, duration);
+    const { currentTime, duration } = e.srcElement;
     const progressPercent = (currentTime / duration) * 100;
     progress.style.width = `${progressPercent}%`;
+    
+    const songDurationMinutes = Math.floor(duration / 60);
+    let songDurationSeconds = Math.floor(duration % 60);
+    if (songDurationSeconds < 10) {
+      songDurationSeconds = `0${songDurationSeconds}`
+    }
+    if (songDurationSeconds) {
+      songDurationElement.innerText = `${songDurationMinutes}:${songDurationSeconds}`;
+    }
+
+    const songCurrentMinutes = Math.floor(currentTime / 60);
+    let songCurrentSeconds = Math.floor(currentTime % 60);
+    if (songCurrentSeconds < 10) {
+      songCurrentSeconds = `0${songCurrentSeconds}`
+    }
+    if (songCurrentSeconds) {
+      currentTimeElement.innerText = `${songCurrentMinutes}:${songCurrentSeconds}`;
+    }
   }
+}
+
+function setProgressBar(e) { 
+  const width = this.clientWidth;
+  const clickX = e.offsetX;
+  const { duration } = song;
+  progress.style.width = `${((clickX / width) * 100)}%`;
+  song.currentTime = (clickX / width) * duration;
 }
 
 nextBtn.addEventListener('click', playNextSong);
 prevBtn.addEventListener('click', playPrevSong);
 song.addEventListener('timeupdate', updateProgressBar);
+song.addEventListener('ended', playNextSong);
+progressContainer.addEventListener('click', setProgressBar);
+
 
