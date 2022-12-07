@@ -78,7 +78,7 @@ function updateProgressBar(e){
       songDurationSeconds = `0${songDurationSeconds}`
     }
     if (songDurationSeconds) {
-      songDurationElement.innerText = `${songDurationMinutes}:${songDurationSeconds}`;
+      songDurationElement.textContent = `${songDurationMinutes}:${songDurationSeconds}`;
     }
 
     const songCurrentMinutes = Math.floor(currentTime / 60);
@@ -87,7 +87,7 @@ function updateProgressBar(e){
       songCurrentSeconds = `0${songCurrentSeconds}`
     }
     if (songCurrentSeconds) {
-      currentTimeElement.innerText = `${songCurrentMinutes}:${songCurrentSeconds}`;
+      currentTimeElement.textContent = `${songCurrentMinutes}:${songCurrentSeconds}`;
     }
   }
 }
